@@ -107,5 +107,24 @@ namespace LinearAlgebraicEquationsSystem
                 return null;
             }
         }
+
+        internal static List<LAEVariable> FillLAEVariablesWithMatrix<T>(MatrixT<T> matrix, List<Variable> lAEVariables)
+        {
+            if (matrix != null && matrix.Columns == 1 && matrix.Rows == lAEVariables.Count)
+            {
+                List<LAEVariable> result = new List<LAEVariable>();
+
+                for (int i = 0; i < lAEVariables.Count; i++)
+                {
+                    result.Add(new LAEVariable(lAEVariables[i].Name, (dynamic)matrix[i, 0]));
+                }
+
+                return result;
+            }
+            else
+            {
+                throw new ArgumentException("Inapropriate matrix to fill the list of variables!");
+            }
+        }
     }
 }

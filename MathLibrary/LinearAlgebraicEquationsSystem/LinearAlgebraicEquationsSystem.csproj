@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculationMethods\LinearAlgebraicEquationSystem.Gauss.cs" />
+    <Compile Include="CalculationMethods\LinearAlgebraicEquationSystem.KramerMethod.cs" />
     <Compile Include="CalculationMethods\LinearAlgebraicEquationSystem.MatrixMethod.cs" />
+    <Compile Include="LAEAnswer.cs" />
     <Compile Include="LAEVariable.cs" />
     <Compile Include="LinearAlgebraicEquationSystem.cs" />
     <Compile Include="MatrixT.cs" />

@@ -1,6 +1,7 @@
 ﻿namespace LinearAlgebraicEquationsSystem
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
 
@@ -84,7 +85,7 @@
 
             for (int i = 0; i < _elements.Length; i++)
             {
-                this.Elements[i, 1] = _elements[i];
+                this.Elements[i, 0] = _elements[i];
             }
 
             this.Rows = _elements.Length;
@@ -441,6 +442,86 @@
             return result;
         }
 
+        /// <summary>
+        /// Method is used to set a basis for a scpecified matrix.
+        /// </summary>
+        /// <param name="matrix">The matrix to set a basis there.</param>
+        public static void SetBaseMatrix(MatrixT<T> matrix)
+        {
+            for (int i = 0; i < matrix.Rows; i++)
+            {
+                for (int j = 0; j < matrix.Columns; j++)
+                {
+                    if (i == j)
+                    {
+                        matrix[i, j] = (dynamic)1;
+                    }
+                    else
+                    {
+                        matrix[i, j] = (dynamic)0;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method is used to get a minor of the matrix.
+        /// </summary>
+        /// <param name="matrix">initial matrix.</param>
+        /// <param name="rowIndex">Row index to exclude.</param>
+        /// <param name="columnIndex">Column index to exclude</param>
+        /// <returns></returns>
+        public static MatrixT<T> GetMinor(MatrixT<T> matrix, int rowIndex, int columnIndex)
+        {
+            MatrixT<T> result = new MatrixT<T>(matrix.Rows - 1, matrix.Columns - 1);
+
+            int ki = 0;
+
+            for (int i = 0; i < matrix.Rows; i++)
+            {
+                if (i != rowIndex)
+                {
+                    for (int j = 0, kj = 0; j < matrix.Columns; j++)
+                    {
+                        if (j != columnIndex)
+                        {
+                            result[ki, kj] = matrix[i, j];
+                            kj++;
+                        }
+                    }
+
+                    ki++;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Method is used to substitute matrix column with other values.
+        /// </summary>
+        /// <param name="matrix">Initial matrix for substitution.</param>
+        /// <param name="columnIndex">Index of a column which will be substituted.</param>
+        /// <param name="newColumn">New values of the column.</param>
+        /// <returns></returns>
+        public static MatrixT<T> SubstituteMatrixColumn(MatrixT<T> matrix, int columnIndex, List<T> newColumn)
+        {
+            if (newColumn.Count != matrix.Rows)
+            {
+                throw new ArgumentException($"Amount of matrix rows: {matrix.Rows} and amount of matrix columns: {newColumn.Count}");
+            }
+
+            MatrixT<T> result = new MatrixT<T>(matrix.Rows, matrix.Columns);
+
+            MatrixT<T>.CopyMatrixItems(matrix, result);
+            for (int i = 0; i < result.Rows; i++)
+            {
+                result[i, columnIndex] = newColumn[i];
+            }
+
+            return result;
+        }
+
         #region Private helpers
 
         private static T[,] GetMinor(T[,] matrix, int n)
@@ -473,48 +554,21 @@
             return firstItem;
         }
 
-        private static void SetBaseMatrix(MatrixT<T> matrix)
+        public static void CopyMatrixItems(MatrixT<T> sourceMatrix, MatrixT<T> destinationMatrix)
         {
-            for (int i = 0; i < matrix.Rows; i++)
+            if (sourceMatrix.Columns != destinationMatrix.Columns ||
+                sourceMatrix.Rows != destinationMatrix.Rows)
             {
-                for (int j = 0; j < matrix.Columns; j++)
-                {
-                    if (i == j)
-                    {
-                        matrix[i, j] = (dynamic)1;
-                    }
-                    else
-                    {
-                        matrix[i, j] = (dynamic)0;
-                    }
-                }
-            }
-        }
-
-        private static MatrixT<T> GetMinor(MatrixT<T> matrix, int indRow, int indCol)
-        {
-            MatrixT<T> result = new MatrixT<T>(matrix.Rows - 1, matrix.Columns - 1);
-
-            int ki = 0;
-
-            for (int i = 0; i < matrix.Rows; i++)
-            {
-                if (i != indRow)
-                {
-                    for (int j = 0, kj = 0; j < matrix.Columns; j++)
-                    {
-                        if (j != indCol)
-                        {
-                            result[ki, kj] = matrix[i, j];
-                            kj++;
-                        }
-                    }
-
-                    ki++;
-                }
+                throw new ArgumentException("Matrixes don't have the same amount of rows and columns!");
             }
 
-            return result;
+            for (int i = 0; i < sourceMatrix.Rows; i++)
+            {
+                for (int j = 0; j < sourceMatrix.Columns; j++)
+                {
+                    destinationMatrix[i, j] = sourceMatrix[i, j];
+                }
+            }
         }
 
         #endregion
