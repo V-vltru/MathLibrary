@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LinearAlgebraicEquationsSystem
+﻿namespace LinearAlgebraicEquationsSystem
 {
+    using System.Collections.Generic;
+
     public partial class LinearAlgebraicEquationSystem
     {
         public List<LAEVariable> CalculateMatrixMethod()
@@ -15,6 +11,16 @@ namespace LinearAlgebraicEquationsSystem
             MatrixT<double> resultMatrix = inversedMatrix * new MatrixT<double>(this.RightPartEquations.ToArray());
             List<LAEVariable> result = LAEVariable.FillLAEVariablesWithMatrix(resultMatrix, this.Variables);
 
+            return result;
+        }
+
+        public List<LAEVariable> CalculateMatrixMethodAsync()
+        {
+            MatrixT<double> inversedMatrix = MatrixT<double>.GetInverseMatrix(this.Matrix);
+
+            MatrixT<double>.Paral = true;
+            MatrixT<double> resultMatrix = inversedMatrix * new MatrixT<double>(this.RightPartEquations.ToArray());
+            List<LAEVariable> result = LAEVariable.FillLAEVariablesWithMatrix(resultMatrix, this.Variables);
             return result;
         }
     }

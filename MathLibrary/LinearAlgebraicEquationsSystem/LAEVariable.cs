@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Expressions;
-using Expressions.Models;
-
-namespace LinearAlgebraicEquationsSystem
+﻿namespace LinearAlgebraicEquationsSystem
 {
+    using System;
+    using System.Collections.Generic;
+    using Expressions.Models;
+
     public class LAEVariable
     {
         // <summary>

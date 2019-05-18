@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Expressions;
-using Expressions.Models;
-
-namespace LinearAlgebraicEquationsSystem
+﻿namespace LinearAlgebraicEquationsSystem
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Expressions;
+    using Expressions.Models;
+
     public partial class LinearAlgebraicEquationSystem
     {
         /// <summary>
@@ -106,6 +104,10 @@ namespace LinearAlgebraicEquationsSystem
             return true;
         }
 
+        /// <summary>
+        /// Method is used to check the compatibility of linear algebraic equation system.
+        /// </summary>
+        /// <returns>The flag which represents if this system is compatibile</returns>
         public bool CheckLinearAlgebraicEquationSystemCompatibility()
         {
             int matrixRank = MatrixT<double>.GetRang(this.Matrix);
