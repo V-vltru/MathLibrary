@@ -8,6 +8,7 @@ using LinearAlgebraicEquationsSystem;
 using Integral;
 using Expressions.Models;
 using Expressions;
+using Optimization;
 
 namespace SystemTest
 {
@@ -18,64 +19,65 @@ namespace SystemTest
             //VerifyExpressions();
             //VerifyIntegrals();
             //VerifyDifferentialEquations();
+            VerifyOptimization();
 
-            MatrixT<int> mat = new MatrixT<int>(new int[3, 4] { { 2, -1, 1, 1 }, { 1, 2, -1, 1 }, { 1, 7, -4, 2 } });
-            double det = MatrixT<int>.GetRang(mat);
+            //MatrixT<int> mat = new MatrixT<int>(new int[3, 4] { { 2, -1, 1, 1 }, { 1, 2, -1, 1 }, { 1, 7, -4, 2 } });
+            //double det = MatrixT<int>.GetRang(mat);
 
-            Console.WriteLine(det);
+            //Console.WriteLine(det);
 
-            MatrixT<int> mat2 = new MatrixT<int>(new int[3, 5] { { 2, -1, 1, 1, 1 }, { 1, 2, -1, 1, 2 }, { 1, 7, -4, 2, 5 } });
-            double det2 = MatrixT<int>.GetRang(mat2);
+            //MatrixT<int> mat2 = new MatrixT<int>(new int[3, 5] { { 2, -1, 1, 1, 1 }, { 1, 2, -1, 1, 2 }, { 1, 7, -4, 2, 5 } });
+            //double det2 = MatrixT<int>.GetRang(mat2);
 
-            Console.WriteLine(det2);
+            //Console.WriteLine(det2);
 
-            MatrixT<double> mat3 = new MatrixT<double>(new double[3, 3] { { 2, 1, 1 }, { 1, -1, 0 }, { 3, -1, 2 } });
-            MatrixT<double> reversed = MatrixT<double>.GetInverseMatrix(mat3);
+            //MatrixT<double> mat3 = new MatrixT<double>(new double[3, 3] { { 2, 1, 1 }, { 1, -1, 0 }, { 3, -1, 2 } });
+            //MatrixT<double> reversed = MatrixT<double>.GetInverseMatrix(mat3);
 
-            MatrixT<double> result = reversed * mat3;
+            //MatrixT<double> result = reversed * mat3;
 
-            for (int i = 0; i < reversed.Rows; i++)
-            {
-                for (int j = 0; j < reversed.Columns; j++)
-                {
-                    Console.Write(reversed[i, j] + " ");
-                }
+            //for (int i = 0; i < reversed.Rows; i++)
+            //{
+            //    for (int j = 0; j < reversed.Columns; j++)
+            //    {
+            //        Console.Write(reversed[i, j] + " ");
+            //    }
 
-                Console.WriteLine();
-            }
+            //    Console.WriteLine();
+            //}
 
-            MatrixT<double> c = 2 * mat3;
+            //MatrixT<double> c = 2 * mat3;
 
-            List<string> leftParts = new List<string>
-            {
-                "2 * x1 + x2 + x3",
-                "x1 - x2",
-                "3 * x1 - x2 + 2 * x3"
-            };
+            //List<string> leftParts = new List<string>
+            //{
+            //    "2 * x1 + x2 + x3",
+            //    "x1 - x2",
+            //    "3 * x1 - x2 + 2 * x3"
+            //};
 
-            List<LAEVariable> lAEVariables = new List<LAEVariable>
-            {
-                new LAEVariable("x1", 0),
-                new LAEVariable("x2", 0),
-                new LAEVariable("x3", 0)
-            };
+            //List<LAEVariable> lAEVariables = new List<LAEVariable>
+            //{
+            //    new LAEVariable("x1", 0),
+            //    new LAEVariable("x2", 0),
+            //    new LAEVariable("x3", 0)
+            //};
 
-            List<double> rightParts = new List<double>
-            {
-                2, -2, 2
-            };
+            //List<double> rightParts = new List<double>
+            //{
+            //    2, -2, 2
+            //};
 
-            LinearAlgebraicEquationSystem linearAlgebraicEquationSystem = new LinearAlgebraicEquationSystem(leftParts, rightParts, lAEVariables, null);
+            //LinearAlgebraicEquationSystem linearAlgebraicEquationSystem = new LinearAlgebraicEquationSystem(leftParts, rightParts, lAEVariables, null);
 
-            List<LAEVariable> res = linearAlgebraicEquationSystem.CalculateMatrixMethod();
-            List<LAEVariable> resMatrixAsync = linearAlgebraicEquationSystem.CalculateMatrixMethodAsync();
+            //List<LAEVariable> res = linearAlgebraicEquationSystem.CalculateMatrixMethod();
+            //List<LAEVariable> resMatrixAsync = linearAlgebraicEquationSystem.CalculateMatrixMethodAsync();
 
-            List<LAEVariable> res2 = linearAlgebraicEquationSystem.CalculateKramerMethod();
-            List<LAEVariable> resKramerAsync = linearAlgebraicEquationSystem.CalculateKramerMethodAsync();
+            //List<LAEVariable> res2 = linearAlgebraicEquationSystem.CalculateKramerMethod();
+            //List<LAEVariable> resKramerAsync = linearAlgebraicEquationSystem.CalculateKramerMethodAsync();
 
-            linearAlgebraicEquationSystem.CalculateGaussMethod(out List<LAEVariable> res3);
+            //linearAlgebraicEquationSystem.CalculateGaussMethod(out List<LAEVariable> res3);
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         static void VerifyIntegrals()
@@ -223,6 +225,37 @@ namespace SystemTest
             double result = exp.GetResultValue(variables);
 
             Console.WriteLine(result);
+            Console.ReadKey();
+        }
+
+        static void VerifyOptimization()
+        {
+            string function = "5*(x1 - 3)^2+(x2 - 5)^2";
+            double step = 0.01;
+
+            List<OptimizationVariable> startVariables = new List<OptimizationVariable>()
+            {
+                new OptimizationVariable("x1", 0),
+                new OptimizationVariable("x2", 0)
+            };
+
+            List<OptimizationVariable> endVariables = new List<OptimizationVariable>()
+            {
+                new OptimizationVariable("x1", 3.1),
+                new OptimizationVariable("x2", 5.1)
+            };
+
+            Optimization.Optimization optimization = new Optimization.Optimization(function, step, startVariables, endVariables);
+
+            List<OptimizationVariable> result = optimization.CalculateBrouteForce(out double fRes);
+
+            foreach(var item in result)
+            {
+                Console.WriteLine($"{item.Name}: {item.Value.ToString()}");
+            }
+
+            Console.WriteLine($"Result: {fRes}");
+
             Console.ReadKey();
         }
     }

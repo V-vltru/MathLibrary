@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{61D1B88B-9828-4CB0-A0E1-75E5B9AB56D6}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>SystemTest</RootNamespace>
-    <AssemblyName>SystemTest</AssemblyName>
+    <ProjectGuid>{F19D6A26-EFA0-4E3D-B095-AD1B1673A7AB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Optimization</RootNamespace>
+    <AssemblyName>Optimization</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,33 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="CalculationMethods\Optimization.BruteForce.cs" />
+    <Compile Include="CalculationMethods\Optimization.Gradient.cs" />
+    <Compile Include="Optimization.cs" />
+    <Compile Include="OptimizationVariable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DifferentialEquationSystem\DifferentialEquationSystem.csproj">
-      <Project>{74415050-4398-40d7-8b31-eddec8bca695}</Project>
-      <Name>DifferentialEquationSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Expressions\Expressions.csproj">
       <Project>{10a8ab90-4c34-47fa-93c0-cf00f29fb147}</Project>
       <Name>Expressions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Integrals\Integrals.csproj">
-      <Project>{832f5e96-b078-47ab-9d7b-f1d046aef01d}</Project>
-      <Name>Integrals</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LinearAlgebraicEquationsSystem\LinearAlgebraicEquationsSystem.csproj">
-      <Project>{41b5fd56-53c1-46ad-abd7-d0eea67ec6c6}</Project>
-      <Name>LinearAlgebraicEquationsSystem</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Optimization\Optimization.csproj">
-      <Project>{f19d6a26-efa0-4e3d-b095-ad1b1673a7ab}</Project>
-      <Name>Optimization</Name>
-    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

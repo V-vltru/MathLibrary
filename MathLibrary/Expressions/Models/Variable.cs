@@ -108,5 +108,14 @@ namespace Expressions.Models
 
             return result;
         }
+
+        public static void CopyVariables(List<Variable> source, List<Variable> destination)
+        {
+            for (int i = 0; i < source.Count; i++)
+            {
+                destination[i].Name = source[i].Name;
+                destination[i].Value = source[i].Value;
+            }
+        }
     }
 }
