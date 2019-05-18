@@ -80,13 +80,33 @@
             switch (calculationType)
             {
                 case CalculationType.LeftRectangle: { return this.CalculateRectangleLeft; }
+                case CalculationType.LeftRectangleAsync: { return this.CalculateRectangleLeftAsync; }
                 case CalculationType.RightRectangle: { return this.CalculationRectangleRight; }
+                case CalculationType.RightRectangleAsync: { return this.CalculationRectangleRightAsync; }
                 case CalculationType.AverageRectangle: { return this.CalcualtionRectangleAverage; }
+                case CalculationType.AverageRectangleAsync: { return this.CalcualtionRectangleAverageAsync; }
                 case CalculationType.Trapezium: { return this.CalcualtionTrapezium; }
+                case CalculationType.TrapeziumAsync: { return this.CalcualtionTrapeziumAsync; }
                 case CalculationType.Simpson: { return this.CalcualtionSimpson; }
+                case CalculationType.SimpsonAsync: { return this.CalcualtionSimpsonAsync; }
 
                 default: throw new Exception("Couldn't identify the method of integral calculation.");
             }
+        }
+
+        private double GetStep(double startValue, double endValue, int iterationNumber)
+        {
+            if (startValue > endValue)
+            {
+                throw new ArgumentException($"Parameter 'startValue' is greater than 'endValue' which is wrong! {startValue} > {endValue}");
+            }
+
+            if (iterationNumber <= 0)
+            {
+                throw new ArgumentException($"Parameter 'iterationNumber' is expected to be more than zero. Now it is {iterationNumber}");
+            }
+
+            return (endValue - startValue) / iterationNumber;
         }
     }
 }

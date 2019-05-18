@@ -3,9 +3,14 @@
     public enum CalculationType
     {
         LeftRectangle,
+        LeftRectangleAsync,
         RightRectangle,
+        RightRectangleAsync,
         AverageRectangle,
+        AverageRectangleAsync,
         Trapezium,
-        Simpson
+        TrapeziumAsync,
+        Simpson,
+        SimpsonAsync
     }
 }

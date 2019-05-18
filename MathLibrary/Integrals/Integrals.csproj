@@ -41,10 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculationMethods.cs" />
     <Compile Include="CalculationType.cs" />
     <Compile Include="Integral.cs" />
     <Compile Include="IntegralVariable.cs" />
+    <Compile Include="Methods\Integral.CalcualtionRectangleAverage.cs" />
+    <Compile Include="Methods\Integral.CalcualtionSimpson.cs" />
+    <Compile Include="Methods\Integral.CalcualtionTrapezium.cs" />
+    <Compile Include="Methods\Integral.CalculateRectangleLeft.cs" />
+    <Compile Include="Methods\Integral.CalculationRectangleRight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
