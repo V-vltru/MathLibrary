@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculationMethods\Optimization.BruteForce.cs" />
+    <Compile Include="CalculationMethods\Optimization.CoordinateSearch.cs" />
     <Compile Include="CalculationMethods\Optimization.Gradient.cs" />
     <Compile Include="Optimization.cs" />
     <Compile Include="OptimizationVariable.cs" />

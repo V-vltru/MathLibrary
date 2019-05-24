@@ -256,6 +256,22 @@ namespace SystemTest
 
             Console.WriteLine($"Result: {fRes}");
 
+            List<OptimizationVariable> resultGradient = optimization.CalculateGradient(out double fGradRes, 0.000000001, 0.001);
+            foreach (var item in resultGradient)
+            {
+                Console.WriteLine($"{item.Name}: {item.Value.ToString()}");
+            }
+
+            Console.WriteLine($"Result: {fGradRes}");
+
+            List<OptimizationVariable> resultCoords = optimization.CalculateCoordinateSearch(out double fCoordRes, 0.00001);
+            foreach (var item in resultCoords)
+            {
+                Console.WriteLine($"{item.Name}: {item.Value.ToString()}");
+            }
+
+            Console.WriteLine($"Result: {fCoordRes}");
+
             Console.ReadKey();
         }
     }
