@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Integral.Integral">
+    <Position X="5" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>BAIACCAABACAQCAAACAAQAAAASQACQAAAAQAAgAAAAA=</HashCode>
+      <FileName>Integral.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Variable" />
+      <Property Name="Integrand" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Integral.IntegralVariable">
+    <Position X="9" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAgAAAAAAI=</HashCode>
+      <FileName>IntegralVariable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Expressions.Expression">
+    <Position X="9" Y="4" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Enum Name="Integral.CalculationType">
+    <Position X="1.75" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAQAAgBEAAEAAAQAAAAkAAAgAAAAA=</HashCode>
+      <FileName>CalculationType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

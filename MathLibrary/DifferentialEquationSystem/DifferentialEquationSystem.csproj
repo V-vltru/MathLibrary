@@ -75,7 +75,9 @@
     <Compile Include="Reporting\Reporting.SetCommonResults.cs" />
     <Compile Include="Reporting\Reporting.SetInitialSheet.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="DifferentialEquationSystemClassDiagram.cd" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Expressions\Expressions.csproj">
       <Project>{10a8ab90-4c34-47fa-93c0-cf00f29fb147}</Project>
