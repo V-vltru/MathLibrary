@@ -87,11 +87,39 @@
         public MatrixT<double> Matrix { get; set; }
 
         /// <summary>
+        /// Main method which provide calculations.
+        /// </summary>
+        /// <param name="lAEVariables">Output parameters where results will be saved.</param>
+        /// <param name="calculationMethod">Calculation method.</param>
+        /// <returns>How many solutions were foud.</returns>
+        public LAEAnswer Calculate(out List<LAEVariable> lAEVariables, LAEMethod calculationMethod)
+        {
+            CalculateDelegate func;
+            switch (calculationMethod)
+            {
+                case LAEMethod.Gauss: func = this.CalculateGaussMethod; break;
+                case LAEMethod.GaussAsync: func = this.CalculateGaussMethod; break;
+                case LAEMethod.Kramer: func = this.CalculateKramerMethod; break;
+                case LAEMethod.KramerAsync: func = this.CalculateKramerMethodAsync; break;
+                case LAEMethod.Matrix: func = this.CalculateMatrixMethod; break;
+                case LAEMethod.MatrixAsync: func = this.CalculateMatrixMethodAsync; break;
+
+                default: throw new ArgumentException($"Could not identify an appropriate calculation method for {calculationMethod.ToString()} parameter.");
+            }
+
+            LAEAnswer result = func(out lAEVariables);
+
+            return result;
+        }
+
+        private delegate LAEAnswer CalculateDelegate(out List<LAEVariable> lAEVariables);
+
+        /// <summary>
         /// Method is used to chek if the input variables a correct and can be a solution for the system.
         /// </summary>
         /// <param name="allVariables">Input variables to check.</param>
         /// <returns>The the flag which represents if the proposed solution is correct.</returns>
-        public bool LinearAlgebraicEquationSystemResult(List<LAEVariable> allVariables)
+        public bool CheckLinearAlgebraicEquationSystemResult(List<LAEVariable> allVariables)
         {
             for(int i = 0; i < this.LeftPartEquations.Count; i++)
             {

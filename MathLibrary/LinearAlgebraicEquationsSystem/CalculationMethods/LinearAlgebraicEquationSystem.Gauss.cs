@@ -8,7 +8,7 @@ namespace LinearAlgebraicEquationsSystem
 {
     public partial class LinearAlgebraicEquationSystem
     {
-        public LAEAnswer CalculateGaussMethod(out List<LAEVariable> results)
+        private LAEAnswer CalculateGaussMethod(out List<LAEVariable> results)
         {
             results = null;
 

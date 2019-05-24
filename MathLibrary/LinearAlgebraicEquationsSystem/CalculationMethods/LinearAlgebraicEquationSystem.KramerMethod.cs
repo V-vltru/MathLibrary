@@ -9,8 +9,15 @@ namespace LinearAlgebraicEquationsSystem
 {
     public partial class LinearAlgebraicEquationSystem
     {
-        public List<LAEVariable> CalculateKramerMethod()
+        private LAEAnswer CalculateKramerMethod(out List<LAEVariable> lAEVariables)
         {
+            bool systemCompatible = this.CheckLinearAlgebraicEquationSystemCompatibility();
+            if (!systemCompatible)
+            {
+                lAEVariables = null;
+                return LAEAnswer.NoSolutions;
+            }
+
             double matrixDeterminant = MatrixT<double>.GetMatrixDeterminant(this.Matrix);
             List<LAEVariable> result = new List<LAEVariable>();
 
@@ -22,11 +29,19 @@ namespace LinearAlgebraicEquationsSystem
                 result.Add(new LAEVariable(this.Variables[i].Name, currentDeterminant / matrixDeterminant));
             }
 
-            return result;
+            lAEVariables = result;
+            return LAEAnswer.OneSolution;
         }
 
-        public List<LAEVariable> CalculateKramerMethodAsync()
+        private LAEAnswer CalculateKramerMethodAsync(out List<LAEVariable> lAEVariables)
         {
+            bool systemCompatible = this.CheckLinearAlgebraicEquationSystemCompatibility();
+            if (!systemCompatible)
+            {
+                lAEVariables = null;
+                return LAEAnswer.NoSolutions;
+            }
+
             double matrixDeterminant = MatrixT<double>.GetMatrixDeterminant(this.Matrix);
             ConcurrentBag<LAEVariable> result = new ConcurrentBag<LAEVariable>();
 
@@ -38,7 +53,8 @@ namespace LinearAlgebraicEquationsSystem
                 result.Add(new LAEVariable(this.Variables[i].Name, currentDeterminant / matrixDeterminant));
             });
 
-            return result.Cast<LAEVariable>().ToList();
+            lAEVariables = result.Cast<LAEVariable>().ToList();
+            return LAEAnswer.OneSolution;
         }
     }
 }

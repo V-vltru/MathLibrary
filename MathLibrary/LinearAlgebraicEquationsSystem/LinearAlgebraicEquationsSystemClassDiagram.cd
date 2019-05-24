@@ -9,8 +9,15 @@
   </Class>
   <Class Name="LinearAlgebraicEquationsSystem.LinearAlgebraicEquationSystem">
     <Position X="7.5" Y="2" Width="3.5" />
+    <NestedTypes>
+      <Delegate Name="LinearAlgebraicEquationsSystem.LinearAlgebraicEquationSystem.CalculateDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>LinearAlgebraicEquationSystem.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AgAAAAAAASACgAgAAAAAAACAEBhgAAkAAAQAAAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAASACAAgAAAAAAACBEDhgAAkAAAQAAAAAAAA=</HashCode>
       <FileName>CalculationMethods\LinearAlgebraicEquationSystem.Gauss.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

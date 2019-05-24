@@ -11,8 +11,6 @@ namespace Optimization
     public partial class Optimization
     {
         private double calculationStep;
-
-        private List<Variable> startVariables;
         
         public Expression Function { get; set; }
 
