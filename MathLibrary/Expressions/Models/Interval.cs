@@ -14,14 +14,14 @@ namespace Expressions.Models
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Interval" /> class.
-        /// [idxStart; idxEnd]
+        /// [indexStart; indexEnd]
         /// </summary>
-        /// <param name="idxFrom">The start index of the interval</param>
-        /// <param name="idxTo">The end index of the interval</param>
-        public Interval(int idxFrom, int idxTo)
+        /// <param name="indexFrom">The start index of the interval</param>
+        /// <param name="indexTo">The end index of the interval</param>
+        public Interval(int indexFrom, int indexTo)
         {
-            this.IdxFrom = idxFrom;
-            this.IdxTo = idxTo;
+            this.IndexFrom = indexFrom;
+            this.IndexTo = indexTo;
         }
 
         /// <summary>
@@ -30,8 +30,8 @@ namespace Expressions.Models
         /// <param name="interval">Instance of the interval which will be copied to the current one</param>
         public Interval(Interval interval)
         {
-            this.IdxFrom = interval.IdxFrom;
-            this.IdxTo = interval.IdxTo;
+            this.IndexFrom = interval.IndexFrom;
+            this.IndexTo = interval.IndexTo;
         }
 
         /// <summary>
@@ -45,33 +45,31 @@ namespace Expressions.Models
         /// <summary>
         /// Gets or sets the start index of the interval
         /// </summary>
-        public int IdxFrom { get; set; }
+        public int IndexFrom { get; set; }
 
         /// <summary>
         /// Gets or sets the end index of the interval
         /// </summary>
-        public int IdxTo { get; set; }
+        public int IndexTo { get; set; }
 
         /// <summary>
         /// Method defines whether the specified index belongs to at least one interval from the list of them
         /// </summary>
-        /// <param name="idx">Index (position in string) to define if it belongs to intervals</param>
+        /// <param name="currentIndex">Index (position in string) to define if it belongs to intervals</param>
         /// <param name="intervals">List of the intervals</param>
-        /// <returns>the falg: true - belongs to at least one interval; false - does not belong to any of the intervals</returns>
-        public static bool BelongsToIntevals(int idx, List<Interval> intervals)
+        /// <returns>the flag: true - belongs to at least one interval; false - does not belong to any of the intervals</returns>
+        public static bool BelongsToIntevals(int currentIndex, List<Interval> intervals)
         {
-            int idxInIntervalsCount = (from g in intervals
-                                       where idx >= g.IdxFrom && idx <= g.IdxTo
-                                       select g).Count();
+            int indexInIntervalsCount = (from g in intervals
+                                         where currentIndex >= g.IndexFrom && currentIndex <= g.IndexTo
+                                         select g).Count();
 
-            if (idxInIntervalsCount == 0)
+            if (indexInIntervalsCount == 0)
             {
                 return false;
             }
-            else
-            {
-                return true;
-            }
+
+            return true;
         }
     }
 }

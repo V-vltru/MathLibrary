@@ -7,11 +7,11 @@
     public partial class Expression
     {
         /// <summary>
-        /// Get the specified operators in the specified expression
+        /// Get the specified operators in the specified expression.
         /// </summary>
-        /// <param name="expression">The expression for searching of operators</param>
-        /// <param name="operatorNames">The sequence of operators</param>
-        /// <returns>The list of Operator instances</returns>
+        /// <param name="expression">The expression for searching of operators.</param>
+        /// <param name="operatorNames">The sequence of operators.</param>
+        /// <returns>The list of Operator instances.</returns>
         public List<Operator> GetOperators(string expression, params char[] operatorNames)
         {
             List<Operator> result = new List<Operator>();
@@ -19,24 +19,24 @@
             List<char> operators = new List<char>();
             operators.AddRange(operatorNames);
 
-            int bBalance = 0;
+            int bracketBalance = 0;
             for (int expressionIndex = 0; expressionIndex < expression.Length; expressionIndex++)
             {
                 if (expression[expressionIndex] == '(')
                 {
-                    bBalance++;
+                    bracketBalance++;
                 }
                 else if (expression[expressionIndex] == ')')
                 {
-                    bBalance--;
-                    if (bBalance < 0)
+                    bracketBalance--;
+                    if (bracketBalance < 0)
                     {
                         throw new Exception("Bracket balance is not observed");
                     }
                 }
                 else
                 {
-                    if (bBalance == 0)
+                    if (bracketBalance == 0)
                     {
                         if (operators.Contains(expression[expressionIndex]))
                         {

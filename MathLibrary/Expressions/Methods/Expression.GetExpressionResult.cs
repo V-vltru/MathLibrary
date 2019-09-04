@@ -7,11 +7,11 @@
     public partial class Expression
     {
         /// <summary>
-        /// Method renders the tree and returns the result of the expression
+        /// Method renders the tree and returns the result of the expression.
         /// </summary>
-        /// <param name="parent">Parent leave of the expression</param>
-        /// <param name="variables">List of variables</param>
-        /// <returns>The result of the expression</returns>
+        /// <param name="parent">Parent leave of the expression.</param>
+        /// <param name="variables">List of variables.</param>
+        /// <returns>The result of the expression.</returns>
         public double GetExpressionResult(Tree parent, List<Variable> variables)
         {
             double leftOp = 0;

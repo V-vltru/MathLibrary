@@ -9,7 +9,7 @@
         /// <summary>
         /// Method removes all brackets which contain nothing inside
         /// </summary>
-        /// <param name="expression">The initial string where the peocess of remmoving empty brackets will be executed</param>
+        /// <param name="expression">The initial string where the process of removing empty brackets will be executed</param>
         /// <returns>New string without empty brackets</returns>
         public static string DeleteEmptyBrackets(string expression)
         {
@@ -29,32 +29,32 @@
         /// <summary>
         /// Method checks whether the bracket balance is observed in expression
         /// </summary>
-        /// <param name="expression">Initial expression for bracket ballance checking process</param>
+        /// <param name="expression">Initial expression for bracket balance checking process</param>
         /// <returns>The flag: true - bracket balance is observed, otherwise - false</returns>
         public static bool CheckBracketBalance(string expression)
         {
             bool result = true;
-            int bBalance = 0;
+            int bracketBalance = 0;
 
             foreach (char symbol in expression)
             {
                 if (symbol == '(')
                 {
-                    bBalance++;
+                    bracketBalance++;
                 }
 
                 if (symbol == ')')
                 {
-                    bBalance--;
+                    bracketBalance--;
                 }
 
-                if (bBalance < 0)
+                if (bracketBalance < 0)
                 {
                     return false;
                 }
             }
 
-            if (bBalance != 0)
+            if (bracketBalance != 0)
             {
                 result = false;
             }
@@ -63,7 +63,7 @@
         }
 
         /// <summary>
-        /// Adds (-1)* instead of - in the beginnig of the expression
+        /// Adds (-1)* instead of - in the beginning of the expression
         /// </summary>
         /// <param name="expression">Expression to analyze</param>
         /// <returns>New expression with (-1)* instead of -</returns>
@@ -92,26 +92,26 @@
             {
                 if (expression[0] == '(')
                 {
-                    int bBalance = 1;
+                    int bracketBalance = 1;
                     bool toContinue = false;
                     for (int expressionStringIndex = 1; expressionStringIndex < expression.Length; expressionStringIndex++)
                     {
                         if (expression[expressionStringIndex] == '(')
                         {
-                            bBalance++;
+                            bracketBalance++;
                         }
                         else if (expression[expressionStringIndex] == ')')
                         {
-                            bBalance--;
+                            bracketBalance--;
 
-                            if (bBalance == 0 && expressionStringIndex == expression.Length - 1)
+                            if (bracketBalance == 0 && expressionStringIndex == expression.Length - 1)
                             {
                                 expression = COPY(expression, 1, expression.Length - 2);
                                 toContinue = true;
                                 break;
                             }
 
-                            if (bBalance == 0 && expressionStringIndex < expression.Length - 1)
+                            if (bracketBalance == 0 && expressionStringIndex < expression.Length - 1)
                             {
                                 toContinue = false;
                                 break;
@@ -119,7 +119,7 @@
                         }
                     }
 
-                    if (bBalance != 0)
+                    if (bracketBalance != 0)
                     {
                         throw new Exception("Bracket balance is not observed!");
                     }
@@ -149,7 +149,7 @@
         /// <param name="source">Initial string</param>
         /// <param name="idxFrom">Begin index</param>
         /// <param name="idxTo">End index</param>
-        /// <returns>The substring in interval: [idxFrom; idxTo]</returns>
+        /// <returns>The substring in interval: [indexFrom; indexTo]</returns>
         public static string COPY(string source, int idxFrom, int idxTo)
         {
             string result = string.Empty;
@@ -168,8 +168,8 @@
         /// Gets all occurrences of a substring in a string
         /// </summary>
         /// <param name="source">The initial string for searching of substrings</param>
-        /// <param name="substring">The substring to search for its occurence</param>
-        /// <returns>The the list of substring occurence indexes</returns>
+        /// <param name="substring">The substring to search for its occurrence</param>
+        /// <returns>The the list of substring occurrence indexes</returns>
         public static List<int> GetAllSubstringIndexes(string source, string substring)
         {
             List<int> result = new List<int>();
