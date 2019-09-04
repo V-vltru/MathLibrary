@@ -7,48 +7,22 @@
     /// </summary>
     public class Tree
     {
-        private string _data;
-        private EssenceType _dataType;
-        private double _leftOperand;
-        private double _rightOperand;
-
-        private string _stringLeft;
-        private string _stringRight;
-
         /// <summary>
-        /// Gets or sets the left subtree
+        /// Initializes a new instance of the <see cref="Tree" /> class.
         /// </summary>
-        public Tree LeftLeave { get; set; }
+        public Tree()
+        {
+        }
 
         /// <summary>
-        /// Gets or sets the right subtree
-        /// </summary>
-        public Tree RightLeave { get; set; }
-
-        /// <summary>
-        /// Gets or sets the tree cascade.
-        /// </summary>
-        public List<Tree> Cascade { get; set; }
-
-        /// <summary>
-        /// Gets or sets the oeprators for cascade units.
-        /// </summary>
-        public List<Operator> CascadeOperators { get; set; }
-
-        /// <summary>
-        /// Default costructor
-        /// </summary>
-        public Tree() { }
-
-        /// <summary>
-        /// Constructor sets the next parameters of the class
+        /// Initializes a new instance of the <see cref="Tree" /> class.
         /// </summary>
         /// <param name="data">The data of the tree</param>
         /// <param name="dataType">The type of data (Nothing, Number, Standard function, Operator)</param>
-        /// <param name="leftOperand">The operand of LEFT subtree</param>
-        /// <param name="rightOperand">The operand of RIGHT subtree</param>
-        /// <param name="stringLeft">The string which is supposed to be sent to LEFT subtree as 'Data' parameter</param>
-        /// <param name="stringRight">The the string which is supposed to be sent to RIGHT subtree as 'Data' parameter</param>
+        /// <param name="leftOperand">The operand of LEFT sub tree</param>
+        /// <param name="rightOperand">The operand of RIGHT sub tree</param>
+        /// <param name="stringLeft">The string which is supposed to be sent to LEFT sub tree as 'Data' parameter</param>
+        /// <param name="stringRight">The the string which is supposed to be sent to RIGHT sub tree as 'Data' parameter</param>
         public Tree(string data, EssenceType dataType, double leftOperand, double rightOperand, string stringLeft, string stringRight)
         {
             this.Data = data;
@@ -62,94 +36,54 @@
         #region Class properties
 
         /// <summary>
+        /// Gets or sets the left sub tree
+        /// </summary>
+        public Tree LeftLeave { get; set; }
+
+        /// <summary>
+        /// Gets or sets the right sub tree
+        /// </summary>
+        public Tree RightLeave { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tree cascade.
+        /// </summary>
+        public List<Tree> Cascade { get; set; }
+
+        /// <summary>
+        /// Gets or sets the operators for cascade units.
+        /// </summary>
+        public List<Operator> CascadeOperators { get; set; }
+
+        /// <summary>
         /// Gets or sets the data of the tree
         /// </summary>
-        public string Data
-        {
-            get
-            {
-                return _data;
-            }
-            set
-            {
-                _data = value;
-            }
-        }
+        public string Data { get; set; }
 
         /// <summary>
         /// Gets or sets the type of data (Nothing, Number, Standard function, Operator)
         /// </summary>
-        public EssenceType DataType
-        {
-            get
-            {
-                return _dataType;
-            }
-            set
-            {
-                _dataType = value;
-            }
-        }
+        public EssenceType DataType { get; set; }
 
         /// <summary>
-        /// Gets or sets the operand of LEFT subtree
+        /// Gets or sets the operand of LEFT sub tree
         /// </summary>
-        public double LeftOperand
-        {
-            get
-            {
-                return _leftOperand;
-            }
-            set
-            {
-                _leftOperand = value;
-            }
-        }
+        public double LeftOperand { get; set; }
 
         /// <summary>
-        /// Gets or sets the operand of RIGHT subtree
+        /// Gets or sets the operand of RIGHT sub tree
         /// </summary>
-        public double RightOperand
-        {
-            get
-            {
-                return _rightOperand;
-            }
-            set
-            {
-                _rightOperand = value;
-            }
-        }
+        public double RightOperand { get; set; }
 
         /// <summary>
-        /// Get or sets the string which is supposed to be sent to LEFT subtree as 'Data' parameter 
+        /// Gets or sets the string which is supposed to be sent to LEFT sub tree as 'Data' parameter 
         /// </summary>
-        public string StringLeft
-        {
-            get
-            {
-                return _stringLeft;
-            }
-            set
-            {
-                _stringLeft = value;
-            }
-        }
+        public string StringLeft { get; set; }
 
         /// <summary>
-        /// Gets or sets the the string which is supposed to be sent to RIGHT subtree as 'Data' parameter 
+        /// Gets or sets the the string which is supposed to be sent to RIGHT sub tree as 'Data' parameter 
         /// </summary>
-        public string StringRight
-        {
-            get
-            {
-                return _stringRight;
-            }
-            set
-            {
-                _stringRight = value;
-            }
-        }
+        public string StringRight { get; set; }
 
         #endregion
     }

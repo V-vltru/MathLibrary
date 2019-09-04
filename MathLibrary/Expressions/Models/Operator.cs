@@ -23,7 +23,6 @@ namespace Expressions.Models
 
         /// <summary>
         /// Error message which will be printed when user attempts to specify 
-        /// not-accessable operator
         /// </summary>
         private static string errorMessage;
 
@@ -34,7 +33,7 @@ namespace Expressions.Models
 
         /// <summary>
         /// Initializes static members of the <see cref="Operator" /> class.
-        /// Operator generates the error message in case of addition of not accessable parameter.
+        /// Operator generates the error message in case of addition of not allowed parameter.
         /// It shows the list of allowable parameters to help 
         /// </summary>
         static Operator()
@@ -57,7 +56,7 @@ namespace Expressions.Models
         /// <param name="operatorName">The name of the operator</param>
         public Operator(int idx, char operatorName)
         {
-            this.Idx = idx;
+            this.Index = idx;
             this.OperatorName = operatorName;
         }
 
@@ -67,7 +66,7 @@ namespace Expressions.Models
         /// <param name="op">Instance of Operator class which is supposed to be copied to the current one</param>
         public Operator(Operator op)
         {
-            this.Idx = op.Idx;
+            this.Index = op.Index;
             this.OperatorName = op.OperatorName;
         }
 
@@ -82,7 +81,7 @@ namespace Expressions.Models
         /// <summary>
         /// Gets or sets the position of the operator
         /// </summary>
-        public int Idx { get; set; }
+        public int Index { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the operator
@@ -110,19 +109,19 @@ namespace Expressions.Models
         /// <summary>
         /// Method returns the value of the binary operator
         /// </summary>
-        /// <param name="leftOp">Left operand</param>
-        /// <param name="rightOp">Right operand</param>
+        /// <param name="leftOperand">Left operand</param>
+        /// <param name="rightOperand">Right operand</param>
         /// <param name="operatorName">Name of the operator</param>
         /// <returns>The result of operator</returns>
-        public static double GetValue(double leftOp, double rightOp, char operatorName)
+        public static double GetValue(double leftOperand, double rightOperand, char operatorName)
         {
             switch (operatorName)
             {
-                case '+': return leftOp + rightOp;
-                case '-': return leftOp - rightOp;
-                case '/': return leftOp / rightOp;
-                case '*': return leftOp * rightOp;
-                case '^': return Math.Pow(leftOp, rightOp);
+                case '+': return leftOperand + rightOperand;
+                case '-': return leftOperand - rightOperand;
+                case '/': return leftOperand / rightOperand;
+                case '*': return leftOperand * rightOperand;
+                case '^': return Math.Pow(leftOperand, rightOperand);
                 default: throw new Exception(errorMessage.Replace("%p%", operatorName.ToString()));
             }
         }
@@ -130,13 +129,13 @@ namespace Expressions.Models
         /// <summary>
         /// Method returns the value of the binary operator
         /// </summary>
-        /// <param name="leftOp">Left operand</param>
-        /// <param name="rightOp">Right operand</param>
+        /// <param name="leftOperand">Left operand</param>
+        /// <param name="rightOperand">Right operand</param>
         /// <param name="operator">Name of the operator</param>
         /// <returns>The result of operator</returns>
-        public static double GetValue(double leftOp, double rightOp, Operator @operator)
+        public static double GetValue(double leftOperand, double rightOperand, Operator @operator)
         {
-            return Operator.GetValue(leftOp, rightOp, @operator.OperatorName);
+            return Operator.GetValue(leftOperand, rightOperand, @operator.OperatorName);
         }
 
         /// <summary>
@@ -159,13 +158,13 @@ namespace Expressions.Models
                 {
                     currentExpression.Clear();
 
-                    for (int i = currentIndex; i < op.Idx; i++)
+                    for (int i = currentIndex; i < op.Index; i++)
                     {
                         currentExpression.Append(expression[i]);
                     }
 
                     result.Add(currentExpression.ToString());
-                    currentIndex = op.Idx + 1;
+                    currentIndex = op.Index + 1;
                 }
 
                 result.Add(expression.Substring(currentIndex));

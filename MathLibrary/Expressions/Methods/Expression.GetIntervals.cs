@@ -6,10 +6,10 @@
     public partial class Expression
     {
         /// <summary>
-        /// Method defines the intervals in the expression
+        /// Method defines the intervals in the expression.
         /// </summary>
-        /// <param name="expression">Initial expression</param>
-        /// <returns>The list of Interval instances</returns>
+        /// <param name="expression">Initial expression.</param>
+        /// <returns>The list of Interval instances.</returns>
         public List<Interval> GetIntervals(string expression)
         {
             List<Interval> result = new List<Interval>();

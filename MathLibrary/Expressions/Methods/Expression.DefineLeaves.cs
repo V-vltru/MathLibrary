@@ -6,6 +6,11 @@
 
     public partial class Expression
     {
+        /// <summary>
+        /// Method is used to build the expression tree.
+        /// </summary>
+        /// <param name="parent">Parent leave.</param>
+        /// <param name="expression">Expression string.</param>
         public void DefineLeaves(Tree parent, string expression)
         {
             string expressionPrev;
@@ -13,7 +18,8 @@
             {
                 expressionPrev = expression;
                 expression = ExpressionParsingHelpers.RemoveWrappedBrackets(expression);
-            } while (expression != expressionPrev);
+            }
+            while (expression != expressionPrev);
 
             List<StandardFunction> funcs = new List<StandardFunction>();
             List<Operator> operators = this.GetOperators(expression, '-', '+');
@@ -69,8 +75,8 @@
             {
                 parent.DataType = type;
                 parent.Data = operators[0].OperatorName.ToString();
-                parent.StringLeft = ExpressionParsingHelpers.COPY(expression, 0, operators[0].Idx - 1);
-                parent.StringRight = ExpressionParsingHelpers.COPY(expression, operators[0].Idx + 1, expression.Length - 1);
+                parent.StringLeft = ExpressionParsingHelpers.COPY(expression, 0, operators[0].Index - 1);
+                parent.StringRight = ExpressionParsingHelpers.COPY(expression, operators[0].Index + 1, expression.Length - 1);
                 parent.LeftOperand = 0;
                 parent.RightOperand = 0;
                 parent.Cascade = null;
@@ -87,7 +93,7 @@
                 parent.DataType = type;
                 parent.Data = funcs[0].Name;
                 parent.StringLeft = null;
-                parent.StringRight = ExpressionParsingHelpers.COPY(expression, funcs[0].Idx + funcs[0].Name.Length, expression.Length - 1);
+                parent.StringRight = ExpressionParsingHelpers.COPY(expression, funcs[0].Index + funcs[0].Name.Length, expression.Length - 1);
                 parent.LeftOperand = 0;
                 parent.RightOperand = 0;
                 parent.Cascade = null;

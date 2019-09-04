@@ -109,6 +109,11 @@ namespace Expressions.Models
             return result;
         }
 
+        /// <summary>
+        /// Method is used to copy variables.
+        /// </summary>
+        /// <param name="source">Variables source.</param>
+        /// <param name="destination">Variables destination.</param>
         public static void CopyVariables(List<Variable> source, List<Variable> destination)
         {
             for (int i = 0; i < source.Count; i++)

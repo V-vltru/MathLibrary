@@ -8,7 +8,7 @@
         /// <summary>
         /// Gets all available (not in the brackets) functions.
         /// </summary>
-        /// <param name="expression">The expression to get all vailable functions there</param>
+        /// <param name="expression">The expression to get all variable functions there</param>
         /// <param name="intervals">List of intervals, where functions are not available</param>
         /// <returns>List of standard functions instances</returns>
         public List<StandardFunction> GetStandardFunctions(string expression, List<Interval> intervals)

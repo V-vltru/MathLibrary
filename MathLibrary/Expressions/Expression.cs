@@ -12,35 +12,11 @@
         private Tree parent;
 
         /// <summary>
-        /// Expression as string to parse
-        /// </summary>
-        public string ExpressionString { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<StandardFunction> StandardFunctions { get; set; }
-
-        /// <summary>
-        /// List of variables in the expression
-        /// </summary>
-        public List<Variable> Variables { get; set; }
-
-        public double GetResultValue(List<Variable> variables)
-        {
-            return this.GetExpressionResult(this.parent, variables);
-        }
-
-        public double GetResultValue(Variable variable)
-        {
-            return this.GetExpressionResult(this.parent, new List<Variable> { variable });
-        }
-
-        /// <summary>
+        /// Initializes a new instance of the <see cref="Expression" /> class.
         /// Constructor validates the input expression and defines the expression tree
         /// </summary>
         /// <param name="expression">Initial expression</param>
-        /// <param name="variables"></param>
+        /// <param name="variables">Initial variables for the expression.</param>
         public Expression(string expression, List<Variable> variables)
         {
             if (ExpressionParsingHelpers.CheckBracketBalance(expression))
@@ -53,7 +29,7 @@
                 expression = ExpressionParsingHelpers.AddMinusOne(expression);
 
                 this.ExpressionString = expression;
-                this.DefineLeaves(parent, this.ExpressionString);
+                this.DefineLeaves(this.parent, this.ExpressionString);
             }
             else
             {
@@ -62,12 +38,54 @@
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Expression" /> class.
         /// Constructor validates the input expression and defines the expression tree
         /// </summary>
         /// <param name="expression">Initial expression</param>
-        public Expression(string expression): this(expression, new List<Variable>())
-        {}
+        public Expression(string expression) : this(expression, new List<Variable>())
+        {
+        }
 
-        public Expression() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Expression" /> class.
+        /// </summary>
+        public Expression()
+        {
+        }
+
+        /// <summary>
+        /// Gets expression as string to parse
+        /// </summary>
+        public string ExpressionString { get; }
+
+        /// <summary>
+        /// Gets or sets the standard functions of expression.
+        /// </summary>
+        public List<StandardFunction> StandardFunctions { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of variables in the expression
+        /// </summary>
+        public List<Variable> Variables { get; set; }
+
+        /// <summary>
+        /// Method is used to get the result of expression.
+        /// </summary>
+        /// <param name="variables">Current variables for getting results.</param>
+        /// <returns>The expression result.</returns>
+        public double GetResultValue(List<Variable> variables)
+        {
+            return this.GetExpressionResult(this.parent, variables);
+        }
+
+        /// <summary>
+        /// Method is used to get the result of expression.
+        /// </summary>
+        /// <param name="variable">Current (one) variable for getting results.</param>
+        /// <returns>The expression result.</returns>
+        public double GetResultValue(Variable variable)
+        {
+            return this.GetExpressionResult(this.parent, new List<Variable> { variable });
+        }
     }
 }
