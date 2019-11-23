@@ -56,15 +56,16 @@
             {
                 throw new ArgumentException("Container 'expressions' of the constructor cannot be null or empty! Nothing in the differential equation system.");
             }
-            else if (expressionSystem.Count != leftVariables.Count)
-            {
-                throw new ArgumentException($"Number of expressions must be equal to the number of left variables! Number of expressions:{expressionSystem.Count}; Number of left variables: {leftVariables.Count}");
-            }
 
             // Validation of the left variables of the differential equation system
             if (leftVariables == null || leftVariables.Count == 0)
             {
                 throw new ArgumentException("Container 'leftVariables' of the constructor cannot be null or empty! Nothing in the left part.");
+            }
+
+            if (expressionSystem.Count != leftVariables.Count)
+            {
+                throw new ArgumentException($"Number of expressions must be equal to the number of left variables! Number of expressions:{expressionSystem.Count}; Number of left variables: {leftVariables.Count}");
             }
 
             // Validation of the time parameter
