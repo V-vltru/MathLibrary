@@ -15,6 +15,17 @@
         /// Initializes a new instance of the <see cref="Expression" /> class.
         /// Constructor validates the input expression and defines the expression tree
         /// </summary>
+        /// <param name="expression">Initial expression.</param>
+        /// <param name="variable">Initial variables for the expression.</param>
+        public Expression(string expression, Variable variable)
+            :this(expression, new List<Variable>() { variable })
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Expression" /> class.
+        /// Constructor validates the input expression and defines the expression tree
+        /// </summary>
         /// <param name="expression">Initial expression</param>
         /// <param name="variables">Initial variables for the expression.</param>
         public Expression(string expression, List<Variable> variables)
