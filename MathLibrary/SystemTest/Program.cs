@@ -18,7 +18,7 @@ namespace SystemTest
         {
             //VerifyExpressions();
             //VerifyIntegrals();
-            //VerifyDifferentialEquations();
+            VerifyDifferentialEquations();
             //VerifyOptimization();
 
             //MatrixT<int> mat = new MatrixT<int>(new int[3, 4] { { 2, -1, 1, 1 }, { 1, 2, -1, 1 }, { 1, 7, -4, 2 } });
@@ -48,32 +48,32 @@ namespace SystemTest
 
             //MatrixT<double> c = 2 * mat3;
 
-            List<string> leftParts = new List<string>
-            {
-                "2 * x1 + x2 + x3",
-                "x1 - x2",
-                "3 * x1 - x2 + 2 * x3"
-            };
+            //List<string> leftParts = new List<string>
+            //{
+            //    "2 * x1 + x2 + x3",
+            //    "x1 - x2",
+            //    "3 * x1 - x2 + 2 * x3"
+            //};
 
-            List<LAEVariable> lAEVariables = new List<LAEVariable>
-            {
-                new LAEVariable("x1", 0),
-                new LAEVariable("x2", 0),
-                new LAEVariable("x3", 0)
-            };
+            //List<LAEVariable> lAEVariables = new List<LAEVariable>
+            //{
+            //    new LAEVariable("x1", 0),
+            //    new LAEVariable("x2", 0),
+            //    new LAEVariable("x3", 0)
+            //};
 
-            List<double> rightParts = new List<double>
-            {
-                2, -2, 2
-            };
+            //List<double> rightParts = new List<double>
+            //{
+            //    2, -2, 2
+            //};
 
-            LinearAlgebraicEquationSystem linearAlgebraicEquationSystem = new LinearAlgebraicEquationSystem(leftParts, rightParts, lAEVariables, null);
+            //LinearAlgebraicEquationSystem linearAlgebraicEquationSystem = new LinearAlgebraicEquationSystem(leftParts, rightParts, lAEVariables, null);
 
-            linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> res, LAEMethod.Matrix);
-            linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> resMatrixAsync, LAEMethod.MatrixAsync);
-            linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> res2, LAEMethod.Kramer);
-            linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> resKramerAsync, LAEMethod.KramerAsync);
-            linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> res3, LAEMethod.Gauss);
+            //linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> res, LAEMethod.Matrix);
+            //linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> resMatrixAsync, LAEMethod.MatrixAsync);
+            //linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> res2, LAEMethod.Kramer);
+            //linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> resKramerAsync, LAEMethod.KramerAsync);
+            //linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> res3, LAEMethod.Gauss);
 
             //List<LAEVariable> res = linearAlgebraicEquationSystem.CalculateMatrixMethod();
             //List<LAEVariable> resMatrixAsync = linearAlgebraicEquationSystem.CalculateMatrixMethodAsync();
@@ -212,7 +212,16 @@ namespace SystemTest
 
             Dictionary<CalculationTypeName, double> calcTimes = differentialEquationSystem.CalculateWithGroupOfMethodsSync(calculationTypes, out results, variablesAtAllSteps);
 
-            Reporting.GenerateExcelReport(calculationTypes, calcTimes, results, variablesAtAllSteps, "csharp-Excel.xls", differentialEquationSystem);
+            Reporting.DEReporter dEReporter = new Reporting.DEReporter(
+                "D:\\DEResult.xls",
+                calculationTypes,
+                calcTimes,
+                results,
+                variablesAtAllSteps,
+                differentialEquationSystem);
+            dEReporter.GenerateReport();
+
+            //Reporting.GenerateExcelReport(calculationTypes, calcTimes, results, variablesAtAllSteps, "csharp-Excel.xls", differentialEquationSystem);
             #endregion
         }
 
