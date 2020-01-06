@@ -59,7 +59,7 @@
         /// <summary>
         /// Method is used to intialize the excel application 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Workbook instance for which woksheet can be created.</returns>
         protected Excel.Workbook InitExcelApplication()
         {
             this.ExcelApplication = new Excel.Application();
@@ -71,6 +71,10 @@
             return this.ExcelApplication.Workbooks.Add();            
         }
 
+        /// <summary>
+        /// Method is used to dispose all excel-related resources.
+        /// </summary>
+        /// <param name="workbook">Workbook to dispose.</param>
         protected void DisposeExcelApplication(Excel.Workbook workbook)
         {
             workbook.Close();
@@ -78,6 +82,26 @@
 
             Marshal.ReleaseComObject(workbook);
             Marshal.ReleaseComObject(this.ExcelApplication);
+        }
+
+        /// <summary>
+        /// Method is used to build a time graph.
+        /// </summary>
+        /// <param name="leftTopTimeChart">Left top table index.</param>
+        /// <param name="rightDownTimeChart">Right down table index.</param>
+        /// <param name="xlWorkSheet">Worksheet for which chart should be created.</param>
+        protected virtual void CreateTimeGraph(string leftTopTimeChart, string rightDownTimeChart, Excel.Worksheet xlWorkSheet)
+        {
+            Excel.Range chartRange;
+            Excel.ChartObjects xlCharts = (Excel.ChartObjects)xlWorkSheet.ChartObjects(Type.Missing);
+            Excel.ChartObject mychart = xlCharts.Add(10, 80, 500, 450);
+            Excel.Chart chartPage = mychart.Chart;
+
+            chartRange = xlWorkSheet.get_Range(leftTopTimeChart, rightDownTimeChart);
+            chartPage.SetSourceData(chartRange);
+            chartPage.ChartType = Excel.XlChartType.xl3DColumnClustered;
+
+            chartPage.SeriesCollection(1).Name = "Calculation times";
         }
     }
 }

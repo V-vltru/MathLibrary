@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DifferentialEquationSystem;
 using LinearAlgebraicEquationsSystem;
 using Integral;
 using Expressions.Models;
 using Expressions;
 using Optimization;
+using System.Diagnostics;
 
 namespace SystemTest
 {
@@ -17,8 +15,8 @@ namespace SystemTest
         static void Main(string[] args)
         {
             //VerifyExpressions();
-            //VerifyIntegrals();
-            VerifyDifferentialEquations();
+            VerifyIntegrals();
+            //VerifyDifferentialEquations();
             //VerifyOptimization();
 
             //MatrixT<int> mat = new MatrixT<int>(new int[3, 4] { { 2, -1, 1, 1 }, { 1, 2, -1, 1 }, { 1, 7, -4, 2 } });
@@ -83,6 +81,7 @@ namespace SystemTest
 
             //linearAlgebraicEquationSystem.CalculateGaussMethod(out List<LAEVariable> res3);
 
+            Console.WriteLine("Completed");
             Console.ReadKey();
         }
 
@@ -95,17 +94,117 @@ namespace SystemTest
             string parameterName = "x";
 
             Integral.Integral integral = new Integral.Integral(integrand, startValue, endValue, iterationsNumber, parameterName);
+            Stopwatch stopwatch = new Stopwatch();
 
+            stopwatch.Start();
             double resultLeftRectangle = integral.Calculate(CalculationType.LeftRectangle);
+            stopwatch.Stop();
+            double leftRectangleTime = stopwatch.ElapsedMilliseconds / 1000.0;
+            stopwatch.Reset();
+
+            stopwatch.Start();
             double resultLeftRectangleAsync = integral.Calculate(CalculationType.LeftRectangleAsync);
+            stopwatch.Stop();
+            double leftRectangleAsyncTime = stopwatch.ElapsedMilliseconds / 1000.0;
+            stopwatch.Reset();
+
+            stopwatch.Start();
             double resultRightRectangle = integral.Calculate(CalculationType.RightRectangle);
+            stopwatch.Stop();
+            double rightRectangleTime = stopwatch.ElapsedMilliseconds / 1000.0;
+            stopwatch.Reset();
+
+            stopwatch.Start();
             double resultRightRectangleAsync = integral.Calculate(CalculationType.RightRectangleAsync);
+            stopwatch.Stop();
+            double rightRectangleAsyncTime = stopwatch.ElapsedMilliseconds / 1000.0;
+            stopwatch.Reset();
+
+            stopwatch.Start();
             double resultAverageRectangle = integral.Calculate(CalculationType.AverageRectangle);
+            stopwatch.Stop();
+            double averageRectangleTime = stopwatch.ElapsedMilliseconds / 1000.0;
+            stopwatch.Reset();
+
+            stopwatch.Start();
             double resultAverageRectangleAsync = integral.Calculate(CalculationType.AverageRectangleAsync);
+            stopwatch.Stop();
+            double averageRectangleAsyncTime = stopwatch.ElapsedMilliseconds / 1000.0;
+            stopwatch.Reset();
+
+            stopwatch.Start();
             double resultTrapezium = integral.Calculate(CalculationType.Trapezium);
+            stopwatch.Stop();
+            double trapeziumTime = stopwatch.ElapsedMilliseconds / 1000.0;
+            stopwatch.Reset();
+
+            stopwatch.Start();
             double resultTrapeziumAsync = integral.Calculate(CalculationType.TrapeziumAsync);
+            stopwatch.Stop();
+            double trapeziumAsyncTime = stopwatch.ElapsedMilliseconds / 1000.0;
+            stopwatch.Reset();
+
+            stopwatch.Start();
             double resultSimpson = integral.Calculate(CalculationType.Simpson);
+            stopwatch.Stop();
+            double simpsonTime = stopwatch.ElapsedMilliseconds / 1000.0;
+            stopwatch.Reset();
+
+            stopwatch.Start();
             double resultSimpsonAsync = integral.Calculate(CalculationType.SimpsonAsync);
+            stopwatch.Stop();
+            double simpsonAsyncTime = stopwatch.ElapsedMilliseconds / 1000.0;
+            stopwatch.Reset();
+
+            List<CalculationType> calculationTypes = new List<CalculationType>
+            {
+                CalculationType.LeftRectangle,
+                CalculationType.LeftRectangleAsync,
+                CalculationType.RightRectangle,
+                CalculationType.RightRectangleAsync,
+                CalculationType.AverageRectangle,
+                CalculationType.AverageRectangleAsync,
+                CalculationType.Trapezium,
+                CalculationType.TrapeziumAsync,
+                CalculationType.Simpson,
+                CalculationType.SimpsonAsync
+            };
+
+            Dictionary<CalculationType, double> results = new Dictionary<CalculationType, double>
+            {
+                { CalculationType.LeftRectangle, resultLeftRectangle },
+                { CalculationType.LeftRectangleAsync, resultLeftRectangleAsync },
+                { CalculationType.RightRectangle, resultRightRectangle },
+                { CalculationType.RightRectangleAsync, resultRightRectangleAsync },
+                { CalculationType.AverageRectangle, resultAverageRectangle },
+                { CalculationType.AverageRectangleAsync, resultAverageRectangleAsync },
+                { CalculationType.Trapezium, resultTrapezium },
+                { CalculationType.TrapeziumAsync, resultTrapeziumAsync },
+                { CalculationType.Simpson, resultSimpson },
+                { CalculationType.SimpsonAsync, resultSimpsonAsync }
+            };
+
+            Dictionary<CalculationType, double> times = new Dictionary<CalculationType, double>
+            {
+                { CalculationType.LeftRectangle, leftRectangleTime },
+                { CalculationType.LeftRectangleAsync, leftRectangleAsyncTime },
+                { CalculationType.RightRectangle, rightRectangleTime },
+                { CalculationType.RightRectangleAsync, rightRectangleAsyncTime },
+                { CalculationType.AverageRectangle, averageRectangleTime },
+                { CalculationType.AverageRectangleAsync, averageRectangleAsyncTime },
+                { CalculationType.Trapezium, trapeziumTime },
+                { CalculationType.TrapeziumAsync, trapeziumAsyncTime },
+                { CalculationType.Simpson, simpsonTime },
+                { CalculationType.SimpsonAsync, simpsonAsyncTime }
+            };
+
+            Reporting.IntegralReporter integralReporter = new Reporting.IntegralReporter(
+                "D:\\IntegralReport.xls",
+                integral,
+                calculationTypes,
+                times, 
+                results);
+            integralReporter.GenerateReport();
 
             Console.WriteLine($"Left rectangle: {resultLeftRectangle}");
             Console.WriteLine($"Left rectangle async: {resultLeftRectangleAsync}");
@@ -117,8 +216,6 @@ namespace SystemTest
             Console.WriteLine($"Trapezium async: {resultTrapeziumAsync}");
             Console.WriteLine($"Simpson: {resultSimpson}");
             Console.WriteLine($"Simpson async: {resultSimpsonAsync}");
-
-            Console.ReadKey();
         }
 
         static void VerifyDifferentialEquations()
@@ -213,7 +310,7 @@ namespace SystemTest
             Dictionary<CalculationTypeName, double> calcTimes = differentialEquationSystem.CalculateWithGroupOfMethodsSync(calculationTypes, out results, variablesAtAllSteps);
 
             Reporting.DEReporter dEReporter = new Reporting.DEReporter(
-                "D:\\DEResult.xls",
+                "D:\\DEResult1.xls",
                 calculationTypes,
                 calcTimes,
                 results,

@@ -115,46 +115,6 @@
             base.DisposeExcelApplication(xlWorkbook);
         }
 
-        //public void GenerateReport(params CalculationTypeName[] calculationTypeNames)
-        //{
-        //    Excel.Application xlApp = new Excel.Application();
-        //    if (xlApp == null)
-        //    {
-        //        throw new NullReferenceException("Excel is not properly installed!!");
-        //    }
-
-        //    Excel.Workbook xlWorkbook = xlApp.Workbooks.Add();
-        //    for (int i = calculationTypeNames.Length - 1; i >= 0; i--)
-        //    {
-        //        Excel.Worksheet itemWorkSheet = (Excel.Worksheet)xlWorkbook.Worksheets.Add();
-        //        this.SetCalculationResults(
-        //            itemWorkSheet,
-        //            this.CalculationTypes[i],
-        //            this.DifferentialEquationSystem.LeftVariables,
-        //            this.Results[this.CalculationTypes[i]],
-        //            this.AllVariables[this.CalculationTypes[i]],
-        //            this.Times[this.CalculationTypes[i]]);
-        //    }
-
-        //    // Generate common results when the amount of calculation times more than 1
-        //    if (this.CalculationTypes.Count > 1)
-        //    {
-        //        Excel.Worksheet commonResultsWorksheet = (Excel.Worksheet)xlWorkbook.Worksheets.Add();
-        //        this.SetCommonResults(commonResultsWorksheet);
-        //    }
-
-        //    Excel.Worksheet initialXlWorkSheet = (Excel.Worksheet)xlWorkbook.Worksheets.Add();
-        //    this.SetInitalSheet(initialXlWorkSheet);
-
-        //    xlWorkbook.SaveAs(base.ReportFileName, Excel.XlFileFormat.xlWorkbookNormal);
-        //    xlWorkbook.Close();
-        //    xlApp.Quit();
-
-        //    Marshal.ReleaseComObject(initialXlWorkSheet);
-        //    Marshal.ReleaseComObject(xlWorkbook);
-        //    Marshal.ReleaseComObject(xlApp);
-        //}
-
         /// <summary>
         /// Method is used to report about calculation result for each type.
         /// </summary>
@@ -296,16 +256,7 @@
             string leftTopTimeChart = GetExcelColumnName(1) + rowIndex.ToString();
             string rightDownTimeChart = GetExcelColumnName(this.Times.Count) + (rowIndex + 1).ToString();
 
-            Excel.Range chartRange;
-            Excel.ChartObjects xlCharts = (Excel.ChartObjects)worksheet.ChartObjects(Type.Missing);
-            Excel.ChartObject mychart = xlCharts.Add(10, 80, 500, 450);
-            Excel.Chart chartPage = mychart.Chart;
-
-            chartRange = worksheet.get_Range(leftTopTimeChart, rightDownTimeChart);
-            chartPage.SetSourceData(chartRange);
-            chartPage.ChartType = Excel.XlChartType.xl3DColumnClustered;
-
-            chartPage.SeriesCollection(1).Name = "Calculation times";
+            base.CreateTimeGraph(leftTopTimeChart, rightDownTimeChart, worksheet);
         }
 
         /// <summary>

@@ -70,6 +70,10 @@
       <Project>{10a8ab90-4c34-47fa-93c0-cf00f29fb147}</Project>
       <Name>Expressions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Integrals\Integrals.csproj">
+      <Project>{832f5e96-b078-47ab-9d7b-f1d046aef01d}</Project>
+      <Name>Integrals</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="COMRefernces\Microsoft.Office.Interop.Excel.dll" />
