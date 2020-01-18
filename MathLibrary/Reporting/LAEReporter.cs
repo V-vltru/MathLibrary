@@ -125,11 +125,11 @@
                     //rowIndex += this.IntermediateResults[lAEMethod][i].Matrix.Rows + 1;
                 }
 
-                if (this.IntermediateResults[lAEMethod][i].RightPart != null)
-                {
-                    rowIndex++;
-                    for (int j = 0; j < )
-                }
+                //if (this.IntermediateResults[lAEMethod][i].RightPart != null)
+                //{
+                //    rowIndex++;
+                //    for (int j = 0; j < )
+                //}
             }
         }
     }
