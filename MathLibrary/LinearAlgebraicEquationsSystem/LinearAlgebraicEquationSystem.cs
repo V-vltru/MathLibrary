@@ -92,7 +92,7 @@
         /// <param name="lAEVariables">Output parameters where results will be saved.</param>
         /// <param name="calculationMethod">Calculation method.</param>
         /// <returns>How many solutions were foud.</returns>
-        public LAEAnswer Calculate(out List<LAEVariable> lAEVariables, LAEMethod calculationMethod)
+        public LAEAnswer Calculate(out List<LAEVariable> lAEVariables, LAEMethod calculationMethod, List<IntermediateResult> intermediateResults = null)
         {
             CalculateDelegate func;
             switch (calculationMethod)
@@ -107,12 +107,12 @@
                 default: throw new ArgumentException($"Could not identify an appropriate calculation method for {calculationMethod.ToString()} parameter.");
             }
 
-            LAEAnswer result = func(out lAEVariables);
+            LAEAnswer result = func(out lAEVariables, intermediateResults);
 
             return result;
         }
 
-        private delegate LAEAnswer CalculateDelegate(out List<LAEVariable> lAEVariables);
+        private delegate LAEAnswer CalculateDelegate(out List<LAEVariable> lAEVariables, List<IntermediateResult> intermediateResults = null);
 
         /// <summary>
         /// Method is used to chek if the input variables a correct and can be a solution for the system.

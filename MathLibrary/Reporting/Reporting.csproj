@@ -59,6 +59,7 @@
     <Compile Include="DEReporter.cs" />
     <Compile Include="ExcelReporter.cs" />
     <Compile Include="IntegralsReporter.cs" />
+    <Compile Include="LAEReporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +74,10 @@
     <ProjectReference Include="..\Integrals\Integrals.csproj">
       <Project>{832f5e96-b078-47ab-9d7b-f1d046aef01d}</Project>
       <Name>Integrals</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LinearAlgebraicEquationsSystem\LinearAlgebraicEquationsSystem.csproj">
+      <Project>{41b5fd56-53c1-46ad-abd7-d0eea67ec6c6}</Project>
+      <Name>LinearAlgebraicEquationsSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

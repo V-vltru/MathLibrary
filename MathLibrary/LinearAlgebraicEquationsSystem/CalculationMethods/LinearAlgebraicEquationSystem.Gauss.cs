@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LinearAlgebraicEquationsSystem
+﻿namespace LinearAlgebraicEquationsSystem
 {
+    using System.Collections.Generic;
+    using System.Text;
+
     public partial class LinearAlgebraicEquationSystem
     {
-        private LAEAnswer CalculateGaussMethod(out List<LAEVariable> results)
+        private LAEAnswer CalculateGaussMethod(out List<LAEVariable> results, List<IntermediateResult> intermediateResults = null)
         {
             results = null;
 
@@ -29,9 +26,18 @@ namespace LinearAlgebraicEquationsSystem
                 return LAEAnswer.NoSolutions;
             }
 
+            if (intermediateResults != null)
+            {
+                intermediateResults.Add(new IntermediateResult("Initial data", currentMatrix, rightPart));
+            }
+
             for (int i = 0; i < currentMatrix.Rows - 1; i++)
             {
                 SortRows(currentMatrix, ref rightPart, i);
+                if (intermediateResults != null)
+                {
+                    intermediateResults.Add(new IntermediateResult("Rows were sorted", currentMatrix, rightPart));
+                }
 
                 for (int j = i + 1; j < currentMatrix.Rows; j++)
                 {
@@ -45,6 +51,14 @@ namespace LinearAlgebraicEquationsSystem
                         }
 
                         rightPart[j] -= rightPart[i] * multElement;
+
+                        if (intermediateResults != null)
+                        {
+                            StringBuilder reportBuilder = new StringBuilder();
+                            reportBuilder.Append($"Work with {j} and {i} rows. ");
+                            reportBuilder.Append($"Multiply ({i}) row on {multElement}; then ({j})-({i}):");
+                            intermediateResults.Add(new IntermediateResult(reportBuilder.ToString(), currentMatrix, rightPart));
+                        }
                     }
                 }
             }
