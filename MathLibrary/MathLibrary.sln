@@ -23,7 +23,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interpolation", "Interpolat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{C44AF789-64B8-4AAD-B92D-7986C89EECFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterpolationClient", "..\..\Interpolation\InterpolationClient\InterpolationClient.csproj", "{A7A73D66-771B-44E5-8BB8-94EA0FB0D453}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterpolationClient", "Clients\InterpolationClient\InterpolationClient.csproj", "{A7A73D66-771B-44E5-8BB8-94EA0FB0D453}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixClient", "Clients\MatrixClient\MatrixClient.csproj", "{2472FD6D-BEE3-408B-AB56-52D0E4298162}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,12 +73,17 @@ Global
 		{A7A73D66-771B-44E5-8BB8-94EA0FB0D453}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7A73D66-771B-44E5-8BB8-94EA0FB0D453}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7A73D66-771B-44E5-8BB8-94EA0FB0D453}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2472FD6D-BEE3-408B-AB56-52D0E4298162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2472FD6D-BEE3-408B-AB56-52D0E4298162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2472FD6D-BEE3-408B-AB56-52D0E4298162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2472FD6D-BEE3-408B-AB56-52D0E4298162}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A7A73D66-771B-44E5-8BB8-94EA0FB0D453} = {C44AF789-64B8-4AAD-B92D-7986C89EECFC}
+		{2472FD6D-BEE3-408B-AB56-52D0E4298162} = {C44AF789-64B8-4AAD-B92D-7986C89EECFC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B448AAD-A467-4CC1-951C-69C0829E9C4C}

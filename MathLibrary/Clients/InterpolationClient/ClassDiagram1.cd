@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="InterpolationClient.Form1" Collapsed="true">
+    <Position X="4.5" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AgKBAAAAEyQggBAQBACgBBYCAEAIAAYABCgADAAEQAM=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Function" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="variables" />
+      <Property Name="Points" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Expressions.Expression">
+    <Position X="10.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Interpolation.Point">
+    <Position X="9" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Expressions.Models.Variable">
+    <Position X="1.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Interpolation.Interpolation">
+    <Position X="3.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsCollectionAssociation>
+      <Property Name="FunctionTable" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Interpolation.InterpolationFactory">
+    <Position X="3.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Interpolation.LagrangeMethod">
+    <Position X="1.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Enum Name="Interpolation.InterpolationType">
+    <Position X="1.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
