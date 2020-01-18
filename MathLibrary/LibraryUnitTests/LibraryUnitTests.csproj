@@ -54,6 +54,7 @@
     <Compile Include="ExpressionsTests\ExpressionsIntegrationTest.cs" />
     <Compile Include="ExpressionsTests\ExpressionTests.cs" />
     <Compile Include="ExpressionsTests\ModelsTests.cs" />
+    <Compile Include="InterpolationUnitTests\NewtonTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,9 +69,16 @@
       <Project>{10a8ab90-4c34-47fa-93c0-cf00f29fb147}</Project>
       <Name>Expressions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Interpolation\Interpolation.csproj">
+      <Project>{98650fc4-d29f-4e5e-b0c1-1e561e06a071}</Project>
+      <Name>Interpolation</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ExpressionsTests\Resources\TestCases.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InterpolationUnitTests\Resources\Points.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
