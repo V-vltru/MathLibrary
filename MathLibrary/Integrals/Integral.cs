@@ -107,8 +107,8 @@
         /// Method is used to get an appropriate Integral instance which implements a correct calculation method.
         /// </summary>
         /// <param name="calculationType">Calculation type.</param>
-        /// <param name="integralInputParameters"></param>
-        /// <returns></returns>
+        /// <param name="integralInputParameters">Inegral input parameters</param>
+        /// <returns>An appropriate integral instance.</returns>
         public static Integral GetIntegral(CalculationType calculationType, IntegralInputParameters integralInputParameters)
         {
             switch(calculationType)
@@ -120,6 +120,16 @@
                 case CalculationType.Trapezium: return new Trapezium(integralInputParameters);
                 default: throw new Exception("Couldn't define an appropriate calculation method.");
             }
+        }
+
+        /// <summary>
+        /// Gets an appropriate Integral instance which implements a correct calculation method.
+        /// </summary>
+        /// <param name="calculationType">Calculation type.</param>
+        /// <returns>An appropriate integral instance.</returns>
+        public static Integral GetIntegral(CalculationType calculationType)
+        {
+            return Integral.GetIntegral(calculationType, new IntegralInputParameters());
         }
     }
 }
