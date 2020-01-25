@@ -17,7 +17,7 @@ namespace SystemTest
         static void Main(string[] args)
         {
             //VerifyExpressions();
-            //VerifyIntegrals();
+            VerifyIntegrals();
             //VerifyDifferentialEquations();
             //VerifyOptimization();
 
@@ -48,32 +48,32 @@ namespace SystemTest
 
             //MatrixT<double> c = 2 * mat3;
 
-            List<string> leftParts = new List<string>
-            {
-                "2 * x1 + x2 + x3",
-                "x1 - x2",
-                "3 * x1 - x2 + 2 * x3"
-            };
+            //List<string> leftParts = new List<string>
+            //{
+            //    "2 * x1 + x2 + x3",
+            //    "x1 - x2",
+            //    "3 * x1 - x2 + 2 * x3"
+            //};
 
-            List<LAEVariable> lAEVariables = new List<LAEVariable>
-            {
-                new LAEVariable("x1", 0),
-                new LAEVariable("x2", 0),
-                new LAEVariable("x3", 0)
-            };
+            //List<LAEVariable> lAEVariables = new List<LAEVariable>
+            //{
+            //    new LAEVariable("x1", 0),
+            //    new LAEVariable("x2", 0),
+            //    new LAEVariable("x3", 0)
+            //};
 
-            List<double> rightParts = new List<double>
-            {
-                2, -2, 2
-            };
+            //List<double> rightParts = new List<double>
+            //{
+            //    2, -2, 2
+            //};
 
-            LinearAlgebraicEquationSystem linearAlgebraicEquationSystem = new LinearAlgebraicEquationSystem(leftParts, rightParts, lAEVariables, null);
+            //LinearAlgebraicEquationSystem linearAlgebraicEquationSystem = new LinearAlgebraicEquationSystem(leftParts, rightParts, lAEVariables, null);
 
-            linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> res, LAEMethod.Matrix);
-            linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> resMatrixAsync, LAEMethod.MatrixAsync);
-            linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> res2, LAEMethod.Kramer);
-            linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> resKramerAsync, LAEMethod.KramerAsync);
-            linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> res3, LAEMethod.Gauss);
+            //linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> res, LAEMethod.Matrix);
+            //linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> resMatrixAsync, LAEMethod.MatrixAsync);
+            //linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> res2, LAEMethod.Kramer);
+            //linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> resKramerAsync, LAEMethod.KramerAsync);
+            //linearAlgebraicEquationSystem.Calculate(out List<LAEVariable> res3, LAEMethod.Gauss);
 
             //List<LAEVariable> res = linearAlgebraicEquationSystem.CalculateMatrixMethod();
             //List<LAEVariable> resMatrixAsync = linearAlgebraicEquationSystem.CalculateMatrixMethodAsync();
@@ -94,18 +94,34 @@ namespace SystemTest
             int iterationsNumber = 1000;
             string parameterName = "x";
 
-            Integral.Integral integral = new Integral.Integral(integrand, startValue, endValue, iterationsNumber, parameterName);
+            Integral.IntegralInputParameters inputParameters = new IntegralInputParameters
+            {
+                IntegrandExpression = integrand,
+                StartValue = startValue,
+                EndValue = endValue,
+                IterationsNumber = iterationsNumber,
+                ParameterName = parameterName
+            };
 
-            double resultLeftRectangle = integral.Calculate(CalculationType.LeftRectangle);
-            double resultLeftRectangleAsync = integral.Calculate(CalculationType.LeftRectangleAsync);
-            double resultRightRectangle = integral.Calculate(CalculationType.RightRectangle);
-            double resultRightRectangleAsync = integral.Calculate(CalculationType.RightRectangleAsync);
-            double resultAverageRectangle = integral.Calculate(CalculationType.AverageRectangle);
-            double resultAverageRectangleAsync = integral.Calculate(CalculationType.AverageRectangleAsync);
-            double resultTrapezium = integral.Calculate(CalculationType.Trapezium);
-            double resultTrapeziumAsync = integral.Calculate(CalculationType.TrapeziumAsync);
-            double resultSimpson = integral.Calculate(CalculationType.Simpson);
-            double resultSimpsonAsync = integral.Calculate(CalculationType.SimpsonAsync);
+            Integral.Integral integral = Integral.Integral.GetIntegral(CalculationType.LeftRectangle, inputParameters);
+            double resultLeftRectangle = integral.Calculate();
+            double resultLeftRectangleAsync = integral.CalculateAsync();
+
+            integral = Integral.Integral.GetIntegral(CalculationType.RightRectangle, inputParameters);
+            double resultRightRectangle = integral.Calculate();
+            double resultRightRectangleAsync = integral.CalculateAsync();
+
+            integral = Integral.Integral.GetIntegral(CalculationType.AverageRectangle, inputParameters);
+            double resultAverageRectangle = integral.Calculate();
+            double resultAverageRectangleAsync = integral.CalculateAsync();
+
+            integral = Integral.Integral.GetIntegral(CalculationType.Trapezium, inputParameters);
+            double resultTrapezium = integral.Calculate();
+            double resultTrapeziumAsync = integral.CalculateAsync();
+
+            integral = Integral.Integral.GetIntegral(CalculationType.Simpson, inputParameters);
+            double resultSimpson = integral.Calculate();
+            double resultSimpsonAsync = integral.CalculateAsync();
 
             Console.WriteLine($"Left rectangle: {resultLeftRectangle}");
             Console.WriteLine($"Left rectangle async: {resultLeftRectangleAsync}");

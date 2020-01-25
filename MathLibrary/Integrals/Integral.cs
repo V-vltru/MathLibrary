@@ -5,7 +5,7 @@
     using Expressions;
     using Expressions.Models;
 
-    public partial class Integral
+    public abstract class Integral
     {
         /// <summary>
         /// Gets or sets the integrand expression.
@@ -59,42 +59,36 @@
         }
 
         /// <summary>
-        /// Method ia used to calculate a definite integral.
+        /// Initializes a new instance of the <see cref="Integral" /> class.
         /// </summary>
-        /// <param name="calculationType">Calculation type.</param>
-        /// <returns>The result of an integral calculation.</returns>
-        public double Calculate(CalculationType calculationType)
+        /// <param name="integralInputParameters"></param>
+        public Integral(IntegralInputParameters integralInputParameters)
+            :this(integralInputParameters.IntegrandExpression,
+                 integralInputParameters.StartValue,
+                 integralInputParameters.EndValue,
+                 integralInputParameters.IterationsNumber,
+                 integralInputParameters.ParameterName)
         {
-            Func<Expression, double, double, int, string, double> method = this.GetMethod(calculationType);
-
-            return method(this.Integrand, this.StartValue, this.EndValue, this.IterationsNumber, this.Variable.Name);
         }
 
         /// <summary>
-        /// Method is used to choose a correct calculation method by the input calculation type.
+        /// Method ia used to calculate a definite integral.
         /// </summary>
-        /// <param name="calculationType">Calculation type.</param>
-        /// <returns>The appropriate calculation method.</returns>
-        private Func<Expression, double, double, int, string, double> GetMethod(CalculationType calculationType)
-        {
-            switch (calculationType)
-            {
-                case CalculationType.LeftRectangle: { return this.CalculateRectangleLeft; }
-                case CalculationType.LeftRectangleAsync: { return this.CalculateRectangleLeftAsync; }
-                case CalculationType.RightRectangle: { return this.CalculationRectangleRight; }
-                case CalculationType.RightRectangleAsync: { return this.CalculationRectangleRightAsync; }
-                case CalculationType.AverageRectangle: { return this.CalcualtionRectangleAverage; }
-                case CalculationType.AverageRectangleAsync: { return this.CalcualtionRectangleAverageAsync; }
-                case CalculationType.Trapezium: { return this.CalcualtionTrapezium; }
-                case CalculationType.TrapeziumAsync: { return this.CalcualtionTrapeziumAsync; }
-                case CalculationType.Simpson: { return this.CalcualtionSimpson; }
-                case CalculationType.SimpsonAsync: { return this.CalcualtionSimpsonAsync; }
+        public abstract double Calculate();
 
-                default: throw new Exception("Couldn't identify the method of integral calculation.");
-            }
-        }
+        /// <summary>
+        /// Method ia used to calculate a definite integral in parallel mode.
+        /// </summary>
+        public abstract double CalculateAsync();
 
-        private double GetStep(double startValue, double endValue, int iterationNumber)
+        /// <summary>
+        /// Method is used to get the step according to an iterations number.
+        /// </summary>
+        /// <param name="startValue">Calculation start value.</param>
+        /// <param name="endValue">Calculation end value.</param>
+        /// <param name="iterationNumber">Iterations number.</param>
+        /// <returns>the step length</returns>
+        protected static double GetStep(double startValue, double endValue, int iterationNumber)
         {
             if (startValue > endValue)
             {
@@ -107,6 +101,25 @@
             }
 
             return (endValue - startValue) / iterationNumber;
+        }
+
+        /// <summary>
+        /// Method is used to get an appropriate Integral instance which implements a correct calculation method.
+        /// </summary>
+        /// <param name="calculationType">Calculation type.</param>
+        /// <param name="integralInputParameters"></param>
+        /// <returns></returns>
+        public static Integral GetIntegral(CalculationType calculationType, IntegralInputParameters integralInputParameters)
+        {
+            switch(calculationType)
+            {
+                case CalculationType.AverageRectangle: return new RectangleAverage(integralInputParameters);
+                case CalculationType.LeftRectangle: return new RectangleLeft(integralInputParameters);
+                case CalculationType.RightRectangle: return new RectangleRight(integralInputParameters);
+                case CalculationType.Simpson: return new Simpson(integralInputParameters);
+                case CalculationType.Trapezium: return new Trapezium(integralInputParameters);
+                default: throw new Exception("Couldn't define an appropriate calculation method.");
+            }
         }
     }
 }

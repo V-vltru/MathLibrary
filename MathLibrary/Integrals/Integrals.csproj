@@ -43,12 +43,13 @@
   <ItemGroup>
     <Compile Include="CalculationType.cs" />
     <Compile Include="Integral.cs" />
+    <Compile Include="IntegralInputParameters.cs" />
     <Compile Include="IntegralVariable.cs" />
-    <Compile Include="Methods\Integral.CalcualtionRectangleAverage.cs" />
-    <Compile Include="Methods\Integral.CalcualtionSimpson.cs" />
-    <Compile Include="Methods\Integral.CalcualtionTrapezium.cs" />
-    <Compile Include="Methods\Integral.CalculateRectangleLeft.cs" />
-    <Compile Include="Methods\Integral.CalculationRectangleRight.cs" />
+    <Compile Include="Methods\RectangleAverage.cs" />
+    <Compile Include="Methods\RectangleLeft.cs" />
+    <Compile Include="Methods\RectangleRight.cs" />
+    <Compile Include="Methods\Simpson.cs" />
+    <Compile Include="Methods\Trapezium.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
