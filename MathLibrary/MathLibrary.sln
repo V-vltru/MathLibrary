@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixClient", "Clients\Mat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegralClient", "Clients\IntegralClient\IntegralClient.csproj", "{F0D06B55-6234-4357-AAF8-B3D2501CF65B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph", "Graph\Graph.csproj", "{A37A606B-1D0B-439B-9FFD-10F30326164C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Approximation", "Approximation\Approximation.csproj", "{90FDCA3B-70B4-44EF-ACC0-44FF496BEF89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +87,14 @@ Global
 		{F0D06B55-6234-4357-AAF8-B3D2501CF65B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0D06B55-6234-4357-AAF8-B3D2501CF65B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0D06B55-6234-4357-AAF8-B3D2501CF65B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A37A606B-1D0B-439B-9FFD-10F30326164C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A37A606B-1D0B-439B-9FFD-10F30326164C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A37A606B-1D0B-439B-9FFD-10F30326164C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A37A606B-1D0B-439B-9FFD-10F30326164C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90FDCA3B-70B4-44EF-ACC0-44FF496BEF89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90FDCA3B-70B4-44EF-ACC0-44FF496BEF89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90FDCA3B-70B4-44EF-ACC0-44FF496BEF89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90FDCA3B-70B4-44EF-ACC0-44FF496BEF89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

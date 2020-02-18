@@ -4,6 +4,12 @@
 
     public static class InterpolationFactory
     {
+        /// <summary>
+        /// Gets interpolation method instance.
+        /// </summary>
+        /// <param name="type">Interpolation method.</param>
+        /// <param name="points">The list of points as a table function.</param>
+        /// <returns>Interpolation instance.</returns>
         public static Interpolation GetInterpolationProvider(InterpolationType type, Point[] points)
         {
             switch(type)
